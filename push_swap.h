@@ -6,7 +6,7 @@
 /*   By: aguenzao <aguenzao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:32:32 by aguenzao          #+#    #+#             */
-/*   Updated: 2025/02/01 09:09:05 by aguenzao         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:36:10 by aguenzao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 typedef struct s_list
 {
-	int				data;
+	int				value;
 	struct s_list	*next;
-	int				indx;
+	int				index;
 	int				position;
 }	t_list;
 
-t_list	*ft_lstnew(int data);
+t_list	*ft_lstnew(int value);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
@@ -37,9 +37,9 @@ void	sb(t_list **b);
 void	ra(t_list **a);
 void	rra(t_list **a);
 void	sa(t_list **a);
-void	ft_error_message(char *mess);
-void	ft_duplicat(t_list *lst);
-int		is_sort(t_list **lst);
+void	error_message(char *mess);
+void	ft_duplicate(t_list *lst);
+int		is_not_sort(t_list **lst);
 t_list	*get_min_number(t_list *lst);
 t_list	*get_max_number(t_list *lst);
 void	ft_sort_two(t_list **lst);
@@ -56,8 +56,8 @@ int		main(int ac, char *av[]);
 void	ft_indexing(t_list *lst);
 int		ft_atoi(const char *str);
 void	ft_free_leak(char **str);
-void	ft_parcing(t_list **nbr, char **av);
-void	ft_sort(t_list **a, t_list **b, int i, int x);
+void	ft_parsing(t_list **nbr, char **av);
+void	ft_sort_a(t_list **a, t_list **b, int i, int x);
 void	ft_sort_five_or_less(t_list **a, t_list **b);
 void	ft_sort_b(t_list **a, t_list **b, int size);
 

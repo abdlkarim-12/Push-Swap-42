@@ -1,53 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   position.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aguenzao <aguenzao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 11:30:54 by aguenzao          #+#    #+#             */
-/*   Updated: 2025/02/01 16:44:44 by aguenzao         ###   ########.fr       */
+/*   Created: 2025/02/01 16:41:39 by aguenzao          #+#    #+#             */
+/*   Updated: 2025/02/01 16:46:25 by aguenzao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_indexing(t_list *lst)
+int	max_position(t_list *lst)
 {
 	t_list	*tmp;
-	t_list	*tmpx;
-	int		i;
+	t_list	*max;
 
-	tmpx = lst;
-	while (tmpx)
+	tmp = lst;
+	max = tmp;
+	while (tmp)
 	{
-		i = 0;
-		tmp = lst;
-		while (tmp)
-		{
-			if (tmp->value < tmpx->value)
-				i++;
-			tmp = tmp->next;
-		}
-		tmpx->index = i;
-		tmpx = tmpx->next;
+		if (tmp->value > max->value)
+			max = tmp;
+		tmp = tmp->next;
 	}
+	return (max->position);
 }
 
-int	main(int ac, char	*av[])
+void	mark_position(t_list **stack)
 {
-	t_list	*s_a;
-	t_list	*s_b;
+	t_list	*tmp;
+	int		i;
 
-	s_a = NULL;
-	s_b = NULL;
-	if (ac == 1)
-		return (0);
-	ft_parsing(&s_a, av);
-	if (is_not_sort(&s_a))
+	i = 0;
+	tmp = (*stack);
+	while (tmp)
 	{
-		ft_sort_a(&s_a, &s_b, 0, 0);
-		ft_sort_b(&s_a, &s_b, 0);
+		tmp->position = i;
+		tmp = tmp->next;
+		i++;
 	}
-	ft_lstclear(&s_a);
 }

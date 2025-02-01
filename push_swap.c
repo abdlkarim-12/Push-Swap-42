@@ -6,23 +6,11 @@
 /*   By: aguenzao <aguenzao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:32:17 by aguenzao          #+#    #+#             */
-/*   Updated: 2025/02/01 09:03:22 by aguenzao         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:39:05 by aguenzao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-size_t	ft_strlen(const char	*str)
-{
-	size_t	i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
 
 void	ft_sort_five_or_less(t_list **a, t_list **b)
 {
@@ -38,7 +26,7 @@ void	ft_sort_five_or_less(t_list **a, t_list **b)
 	return ;
 }
 
-void	ft_sort(t_list **a, t_list **b, int i, int x)
+void	ft_sort_a(t_list **a, t_list **b, int i, int x)
 {
 	t_list	*tmp;
 
@@ -51,12 +39,12 @@ void	ft_sort(t_list **a, t_list **b, int i, int x)
 	while (*a)
 	{
 		tmp = *a;
-		if (tmp->indx <= i)
+		if (tmp->index <= i)
 		{
 			pb(a, b);
 			i++;
 		}
-		else if (tmp->indx <= i + x)
+		else if (tmp->index <= i + x)
 		{
 			pb(a, b);
 			rb(b);

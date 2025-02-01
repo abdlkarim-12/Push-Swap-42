@@ -6,13 +6,13 @@
 /*   By: aguenzao <aguenzao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:32:40 by aguenzao          #+#    #+#             */
-/*   Updated: 2025/02/01 09:08:27 by aguenzao         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:37:49 by aguenzao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error_message(char *mess)
+void	error_message(char *mess)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ void	ft_error_message(char *mess)
 	exit(1);
 }
 
-void	ft_duplicat(t_list *lst)
+void	ft_duplicate(t_list *lst)
 {
 	t_list	*tmp;
 	t_list	*tmp1;
@@ -38,15 +38,15 @@ void	ft_duplicat(t_list *lst)
 		tmp = tmp1->next;
 		while (tmp)
 		{
-			if (tmp1->data == tmp->data)
-				ft_error_message("Error");
+			if (tmp1->value == tmp->value)
+				error_message("Error");
 			tmp = tmp-> next;
 		}
 		tmp1 = tmp1->next;
 	}
 }
 
-int	is_sort(t_list **lst)
+int	is_not_sort(t_list **lst)
 {
 	t_list	*iter;
 
@@ -55,7 +55,7 @@ int	is_sort(t_list **lst)
 	{
 		if (iter->next)
 		{
-			if (iter->data > iter->next->data)
+			if (iter->value > iter->next->value)
 				return (1);
 		}
 		iter = iter->next;
@@ -63,30 +63,46 @@ int	is_sort(t_list **lst)
 	return (0);
 }
 
-t_list	*get_min_number(t_list *lst)
+char	*ft_strdup(const char *src)
 {
-	t_list	*tmp;
+	char	*dst;
+	size_t	len;
+	size_t	i;
 
-	tmp = lst;
-	while (tmp)
+	len = ft_strlen(src);
+	dst = malloc(sizeof(char) * (len + 1));
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (i < len)
 	{
-		if (lst->data > tmp->data)
-			lst = tmp;
-		tmp = tmp->next;
+		dst[i] = src[i];
+		i++;
 	}
-	return (lst);
+	dst[i] = '\0';
+	return (dst);
 }
 
-t_list	*get_max_number(t_list *lst)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	t_list	*tmp;
+	size_t	i;
+	char	*str;
 
-	tmp = lst;
-	while (tmp)
+	if (!s)
+		return (NULL);
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len)
 	{
-		if (lst->data < tmp->data)
-			lst = tmp;
-		tmp = tmp->next;
+		str[i] = s[start + i];
+		i++;
 	}
-	return (lst);
+	str[i] = '\0';
+	return (str);
 }

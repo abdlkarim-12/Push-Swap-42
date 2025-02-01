@@ -6,8 +6,8 @@ NAME = push_swap
 
 HEADER = push_swap.h
 
-SRCS = ft_split.c creat_list.c main.c utils.c parcing.c \
-       bush_a_b.c moves_a.c moves_b.c ft_sort_4_5.c ft_sort2_3.c push_swap.c
+SRCS = ft_split.c create_list.c main.c utils.c parsing.c min_max_numbers.c\
+       push_a_b.c interaction_a.c interaction_b.c ft_sort4_5.c ft_sort2_3.c push_swap.c position.c
 
 OBJS = $(SRCS:.c=.o)
 

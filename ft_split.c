@@ -6,54 +6,39 @@
 /*   By: aguenzao <aguenzao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:30:44 by aguenzao          #+#    #+#             */
-/*   Updated: 2025/02/01 08:40:07 by aguenzao         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:45:54 by aguenzao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*ft_strdup(const char *src)
+int	ft_atoi(const char *str)
 {
-	char	*dst;
-	size_t	len;
-	size_t	i;
+	int		i;
+	int		s;
+	long	r;
 
-	len = ft_strlen(src);
-	dst = malloc(sizeof(char) * (len + 1));
-	if (!dst)
-		return (NULL);
-	i = 0;
-	while (i < len)
+	(1) && (i = 0, s = 1, r = 0);
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		dst[i] = src[i];
+		if (str[i] == '-')
+			s = -1;
 		i++;
 	}
-	dst[i] = '\0';
-	return (dst);
-}
-
-char	*ft_substr(const char *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*str;
-
-	if (!s)
-		return (NULL);
-	if (start > ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (i < len)
+	if (str[i] == '\0')
+		error_message("Error");
+	while (str[i] != '\0')
 	{
-		str[i] = s[start + i];
+		if (str[i] < '0' || str[i] > '9')
+			error_message("Error");
+		r = r * 10 + (str[i] - '0');
+		if (r * s > 2147483647 || r * s < -2147483648)
+			error_message("Error");
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	return (r * s);
 }
 
 static int	ft_countword(char const *str, char c)
@@ -68,7 +53,7 @@ static int	ft_countword(char const *str, char c)
 	while (str[i] == ' ')
 	{
 		if (str[i + 1] == '\0')
-			ft_error_message("Error");
+			error_message("Error");
 		i++;
 	}
 	while (str[i])
